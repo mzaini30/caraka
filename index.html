@@ -1,0 +1,62 @@
+<!DOCTYPE html><html><head><title>Kalkulator Caraka</title><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/papercss@1.6.1/dist/paper.min.css"><style> input {
+  width: 100%;
+}
+</style></head><body><div class="container"><center><h3>Kalkulator Caraka</h3></center><form class="form-caraka"><div class="form-group"><label>Jumlah halaman (opsional, minimal 50, maksimal 505)</label><input class="jumlah-halaman" type="tel"></div><div class="form-group"><label>Harga jual </label><input class="harga-jual" type="tel"></div><div class="form-group"><label>Harga promo</label><input class="harga-promo" type="tel"></div><div class="form-group"><label>Eksemplar (minimal 25)</label><input class="eksemplar" type="tel"></div><div class="form-group"><label>Pra cetak</label><input class="pra-cetak" readonly></div><div class="form-group"><label>Total biaya</label><input class="total-biaya" readonly></div></form></div><script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script><script>"use strict";
+
+$("input").on("keyup", function () {
+  if ($(".jumlah-halaman").is(":focus")) {
+    var harga_jual;
+    var jumlah_halaman = Number($(".jumlah-halaman").val());
+    if (jumlah_halaman < 50) {
+      harga_jual = 0;
+    } else if (jumlah_halaman <= 79) {
+      harga_jual = 44500;
+    } else if (jumlah_halaman <= 105) {
+      harga_jual = 49500;
+    } else if (jumlah_halaman <= 155) {
+      harga_jual = 54500;
+    } else if (jumlah_halaman <= 205) {
+      harga_jual = 59500;
+    } else if (jumlah_halaman <= 255) {
+      harga_jual = 64500;
+    } else if (jumlah_halaman <= 305) {
+      harga_jual = 69500;
+    } else if (jumlah_halaman <= 355) {
+      harga_jual = 74500;
+    } else if (jumlah_halaman <= 405) {
+      harga_jual = 79500;
+    } else if (jumlah_halaman <= 505) {
+      harga_jual = 84500;
+    }
+    $(".harga-jual").val(harga_jual);
+  }
+
+  var pra_cetak;
+  var eksemplar = Number($(".eksemplar").val());
+  if (eksemplar < 25) {
+    pra_cetak = 0;
+  } else if (eksemplar <= 49) {
+    pra_cetak = 500000;
+  } else if (eksemplar <= 99) {
+    pra_cetak = 250000;
+  } else {
+    pra_cetak = 0;
+  }
+  $(".pra-cetak").val(pra_cetak);
+
+  $(".harga-promo").val(Number($(".harga-jual").val()) * 0.9);
+
+  var total_biaya;
+  harga_jual = Number($(".harga-jual").val());
+  eksemplar = Number($(".eksemplar").val());
+  pra_cetak = Number($(".pra-cetak").val());
+
+  if (eksemplar >= 100) {
+    total_biaya = harga_jual * 0.8 * eksemplar;
+  } else if (eksemplar >= 50) {
+    total_biaya = harga_jual * 0.8 * eksemplar + pra_cetak;
+  } else if (eksemplar >= 25) {
+    total_biaya = harga_jual * 0.75 * eksemplar + pra_cetak;
+  }
+  $(".total-biaya").val("Rp " + total_biaya.toLocaleString("id"));
+});</script></body></html>

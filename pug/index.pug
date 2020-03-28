@@ -1,0 +1,35 @@
+doctype html
+html
+  head
+    title Kalkulator Caraka
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1, user-scalable=no")
+    link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/papercss@1.6.1/dist/paper.min.css")
+    style 
+      include:stylus style.stylus
+  body
+    .container
+      center
+        h3 Kalkulator Caraka
+      form.form-caraka
+        .form-group
+          label Jumlah halaman (opsional, minimal 50, maksimal 505)
+          input.jumlah-halaman(type="tel")
+        .form-group
+          label Harga jual 
+          input.harga-jual(type="tel")
+        .form-group
+          label Harga promo
+          input.harga-promo(type="tel")
+        .form-group
+          label Eksemplar (minimal 25)
+          input.eksemplar(type="tel")
+        .form-group
+          label Pra cetak
+          input.pra-cetak(readonly)
+        .form-group
+          label Total biaya
+          input.total-biaya(readonly)
+    script(src="https://code.jquery.com/jquery-3.4.1.slim.min.js")
+    script
+      include:babel(presets=["es2015"]) app.js
